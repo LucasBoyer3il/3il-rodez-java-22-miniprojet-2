@@ -14,7 +14,7 @@ public class AlgorithmeAEtoile<E> implements AlgorithmeChemin<E> {
     }
 
     @Override
-    public Chemin trouverChemin(Carte carte, int x, int y, int x1, int y1) {
+    public Chemin trouverChemin(Carte carte, int caseDepartX, int caseDepartY, int caseArriveeX, int caseArriveeY) {
         return null;
     }
 }

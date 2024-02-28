@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Noeud<E> {
 
-    private E valeur;
+    private E valeur; // valeur sert à pourvoir être adpaté pour être utilisé dans plusieurs algo différents
 
     private List<Noeud<E>> voisins;
 
@@ -23,6 +23,6 @@ public class Noeud<E> {
     }
 
     public void ajouterVoisin(Noeud<E> voisin) {
-        voisins = (List<Noeud<E>>) voisins.set(voisins.size(), voisin);
+        voisins.add(voisins.size() + 1, voisin);
     }
 }

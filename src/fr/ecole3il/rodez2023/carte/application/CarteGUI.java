@@ -154,14 +154,14 @@ public class CarteGUI extends JFrame {
 		// Créer une carte de test
 		Tuile[][] tuiles = new Tuile[][] { { Tuile.DESERT, Tuile.MONTAGNES, Tuile.PLAINE },
 				{ Tuile.FORET, Tuile.DESERT, Tuile.PLAINE }, { Tuile.PLAINE, Tuile.MONTAGNES, Tuile.FORET } };
-		/* Création d'une carte aléatoire
+		// Création d'une carte aléatoire
 		GenerateurCarte gen = new GenerateurCarte();
-		Carte carte = gen.genererCarte(10, 10);//new Carte(tuiles);
+		Carte carte = new Carte(tuiles); //gen.genererCarte(10, 10);
 
 		// Créer et afficher l'interface graphique
 		SwingUtilities.invokeLater(() -> {
 			CarteGUI carteGUI = new CarteGUI(carte);
 			carteGUI.setVisible(true);
-		});*/
+		});
 	}
 }

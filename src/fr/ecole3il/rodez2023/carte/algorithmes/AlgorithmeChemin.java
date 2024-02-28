@@ -13,5 +13,5 @@ public interface AlgorithmeChemin<E> {
 
     public List<Noeud<E>> trouverChemin(Graphe<E> graphe, Noeud<E> depart, Noeud<E> arrivee);
 
-    public Chemin trouverChemin(Carte carte, int x, int y, int x1, int y1);
+    public Chemin trouverChemin(Carte carte, int caseDepartX, int caseDepartY, int caseArriveeX, int caseArriveeY);
 }
