@@ -1,5 +1,8 @@
 package fr.ecole3il.rodez2023.carte.application;
 
+import fr.ecole3il.rodez2023.carte.algorithmes.AlgorithmeAEtoile;
+import fr.ecole3il.rodez2023.carte.algorithmes.AlgorithmeChemin;
+import fr.ecole3il.rodez2023.carte.algorithmes.AlgorithmeDijkstra;
 import fr.ecole3il.rodez2023.carte.elements.Carte;
 import fr.ecole3il.rodez2023.carte.elements.Case;
 import fr.ecole3il.rodez2023.carte.elements.Chemin;
@@ -9,17 +12,13 @@ import fr.ecole3il.rodez2023.carte.manipulateurs.GenerateurCarte;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 /**
  * @author p.roquart
- * voilà
- * donc
- * c'est la classe finale pour le gui quoi
- * enfin je sais pas
- * moi j'aime pas le java
  */
 public class CarteGUI extends JFrame {
 	private Carte carte;
@@ -52,9 +51,9 @@ public class CarteGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String choix = (String) algorithmeComboBox.getSelectedItem();
-				if (choix.equals("Dijkstra")) {
+				if ("Dijkstra".equals(choix)) {
 					algorithme = new AlgorithmeDijkstra();
-				} else if (choix.equals("A*")) {
+				} else if ("A*".equals(choix)) {
 					algorithme = new AlgorithmeAEtoile();
 				}
 			}
@@ -107,7 +106,7 @@ public class CarteGUI extends JFrame {
 		}
 
 		if (caseDepart != null && caseArrivee != null) {
-			Chemin chemin = algorithme.trouverChemin(carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(),
+			Chemin chemin = (Chemin) algorithme.trouverChemin(carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(),
 					caseArrivee.getY());
 			g.setColor(Color.RED);
 			for (Case c : chemin.getCases()) {
@@ -153,10 +152,9 @@ public class CarteGUI extends JFrame {
 
 	public static void main(String[] args) {
 		// Créer une carte de test
-		/*Tuile[][] tuiles = new Tuile[][] { { Tuile.DESERT, Tuile.MONTAGNES, Tuile.PLAINE },
-				{ Tuile.FORET, Tuile.DESERT, Tuile.PLAINE }, { Tuile.PLAINE, Tuile.MONTAGNES, Tuile.FORET } };*/
-		// J'ai mis ça en test
-		// Donc OKLM en commentaires
+		Tuile[][] tuiles = new Tuile[][] { { Tuile.DESERT, Tuile.MONTAGNES, Tuile.PLAINE },
+				{ Tuile.FORET, Tuile.DESERT, Tuile.PLAINE }, { Tuile.PLAINE, Tuile.MONTAGNES, Tuile.FORET } };
+		/* Création d'une carte aléatoire
 		GenerateurCarte gen = new GenerateurCarte();
 		Carte carte = gen.genererCarte(10, 10);//new Carte(tuiles);
 
@@ -164,6 +162,6 @@ public class CarteGUI extends JFrame {
 		SwingUtilities.invokeLater(() -> {
 			CarteGUI carteGUI = new CarteGUI(carte);
 			carteGUI.setVisible(true);
-		});
+		});*/
 	}
 }
