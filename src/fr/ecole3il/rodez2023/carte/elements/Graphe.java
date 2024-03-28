@@ -1,62 +1,42 @@
 package fr.ecole3il.rodez2023.carte.elements;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Graphe<E> {
 
-    private Noeud<E> noeud;
+    Map<Noeud<E>, Map<Noeud<E>, Double>> voisins;
 
-    private List<Noeud<E>> noeuds;
-    private double cout;
-
-    private Map<Noeud, Map<Noeud, Double>> graphe;
-
-
-    public Graphe(Noeud<E> noeud, List<Noeud<E>> noeuds, double cout) {
-        this.noeud = noeud;
-        this.noeuds = noeuds;
-        this.cout = cout;
+    public Graphe() {
+        this.voisins = new HashMap<>();
     }
 
-    /**
-     * * Ajoute le en paramètre noeud au graphe sauf si il existe déjà
-     * @param noeud
-     */
     public void ajouterNoeud(Noeud<E> noeud) {
-        if (!noeuds.contains(noeud)) {
-            noeuds.add(noeud);
+        if (!voisins.containsKey(noeud)) {
+            voisins.put(noeud, new HashMap<>());
         }
     }
 
-    /**
-     * Ajoute une arrête entre deux noeuds. Si les noeuds n'existent pas alors on les ajoutes avec ajouterNoeud. Initialiser l'arête à la matrice adjacence
-     * @param depart
-     * @param arrivee
-     * @param cout
-     */
     public void ajouterArete(Noeud<E> depart, Noeud<E> arrivee, double cout) {
-        /*if (!graphe.containsKey(depart)){
-            ajouterNoeud(depart);
-        } else if (!graphe.containsKey(arrivee)){
-            ajouterNoeud(arrivee);
-        } else {*/
-        Map<Noeud, Double> buffer = new HashMap<>();
-        buffer.put(arrivee, cout);
-        graphe.put(depart, buffer);
-        //}
+        depart.ajouterVoisin(arrivee);
+        arrivee.ajouterVoisin(depart);
+        voisins.get(depart).put(arrivee, cout);
     }
 
     public double getCoutArete(Noeud<E> depart, Noeud<E> arrivee) {
-        return graphe.get(depart).get(arrivee);
+        // Cette méthode pourrait être implémentée en fonction des coûts associés
+        // à chaque arête dans votre graphe
+        // Ici, vous pouvez simplement retourner 1 si les nœuds sont voisins
+        return depart.getVoisins().contains(arrivee) ? 1 : Double.POSITIVE_INFINITY;
     }
 
     public List<Noeud<E>> getNoeuds() {
-        return noeuds; //retourner les noeuds du graphe
+        return new ArrayList<>(voisins.keySet());
     }
 
     public List<Noeud<E>> getVoisins(Noeud<E> noeud) {
-        return noeud.getVoisins(); //renvoyer les voisins d'un noeud
+        return noeud.getVoisins();
     }
 }

@@ -156,7 +156,7 @@ public class CarteGUI extends JFrame {
 				{ Tuile.FORET, Tuile.DESERT, Tuile.PLAINE }, { Tuile.PLAINE, Tuile.MONTAGNES, Tuile.FORET } };
 		// Création d'une carte aléatoire
 		GenerateurCarte gen = new GenerateurCarte();
-		Carte carte = new Carte(tuiles); //gen.genererCarte(10, 10);
+		Carte carte = gen.genererCarte(10, 10); //new Carte(tuiles);
 
 		// Créer et afficher l'interface graphique
 		SwingUtilities.invokeLater(() -> {
